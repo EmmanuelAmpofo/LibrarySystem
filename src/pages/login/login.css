@@ -37,6 +37,7 @@ label{
     background-color: transparent;
     color: #2557d0;
     border-bottom: 0.063rem solid #303030;
+    margin-bottom: 0.313rem;
 }
 a{
     text-decoration: none;
@@ -60,6 +61,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid; */
 }
 .shwPwd{
     font-size: 0.875rem;
@@ -90,4 +92,16 @@ a{
 }
 .signUp:hover{
     text-decoration: underline;
+}
+
+@media screen and (max-width: 600px){
+    .formWrapper{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .formWrapper{
+        width: 80%;
+    }
 }

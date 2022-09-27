@@ -77,7 +77,7 @@ function Login() {
           </button>
         </Box>
         <span className="dontHave">
-          Don' have an account?{" "}
+          Don't have an account?{" "}
           <a href="/" className="signUp">
             Sign Up
           </a>
