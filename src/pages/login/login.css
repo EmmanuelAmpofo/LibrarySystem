@@ -1,0 +1,93 @@
+.loginWrapper{
+    display: flex;
+    min-height: 100vh;
+    background-image: url(../../assets/back.avif);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+
+}
+.formWrapper{
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0.313rem;
+    height: 30rem;
+    width: 25%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1.25rem;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0.313rem auto;
+}
+.caps{
+    font-size: 0.875rem;
+    color: red;
+}
+label{
+    color: #303030;
+}
+.inputField{
+    background-color: transparent;
+    color: #2557d0;
+    border-bottom: 0.063rem solid #303030;
+}
+a{
+    text-decoration: none;
+}
+.forgotPassword{
+    color: #2557d0;
+    display: flex;
+    align-self: flex-end;
+    font-size: 0.875rem;
+}
+.forgotPassword:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pwdWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.625rem;
+}
+.togglePwd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shwPwd{
+    font-size: 0.875rem;
+}
+.loginBtn{
+    background-color: #2557d0;
+    align-self: center;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1.875rem;
+    padding: 0.625rem 1.875rem;
+    border-radius: 0.188rem;
+    text-transform: uppercase; 
+    letter-spacing: 0.188rem;
+    border: 0.125rem solid transparent;
+}
+.loginBtn:hover{
+    background-color: transparent;
+    border: 0.063rem solid #2557d0;
+    color: #2557d0;
+}
+.dontHave{
+    align-self: center;
+}
+.signUp{
+    color: #2557d0;
+}
+.signUp:hover{
+    text-decoration: underline;
+}
