@@ -24,6 +24,11 @@ function Login() {
     navigate('/signup')
   }
 
+  const handleSignIn=(event)=>{
+    event.preventDefault()
+    navigate("/admin")
+  }
+
   return (
     <Box className="loginWrapper">
       <form action="" className="formWrapper">
@@ -78,7 +83,7 @@ function Login() {
               forgot password?
             </a>
           </Box>
-          <button type="submit" className="loginBtn">
+          <button type="submit" className="loginBtn" onClick={handleSignIn}>
             login
           </button>
         </Box>
