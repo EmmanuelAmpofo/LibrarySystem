@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import {Box, Input} from '@mui/material'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Box, Input } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const [input, setInput] = useState("");
+
   const [capsLock, setCapsLock] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const checkCapsLockOn = (event) => {
     if (event.getModifierState("CapsLock")) {
@@ -18,11 +20,39 @@ function SignUp() {
   const showPassword = () => {
     setVisiblePassword(visiblePassword ? false : true);
   };
-  
-  const routeToPage = ()=>{
-    navigate('/')
-  }
 
+  const routeToPage = () => {
+    navigate("/");
+  };
+
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setInput((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    if (
+      input.firstname !== "" &&
+      input.lastname !== "" &&
+      input.username !== "" &&
+      input.email !== "" &&
+      input.password !== "" &&
+      input.confirmPassword
+    ) {
+      console.log(input.firstname);
+      console.log(input.lastname);
+      console.log(input.username);
+      console.log(input.email);
+      console.log(input.password);
+      alert("Registration Successful")
+      navigate("/");
+    } else {
+      alert("Please all form fields are required");
+    }
+  };
   return (
     <Box className="loginWrapper">
       <form action="" className="signUpFormWrapper">
@@ -36,6 +66,8 @@ function SignUp() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            onChange={handleInputChange}
+            value={input.firstname}
           />
           {capsLock && <span className="caps">WARNING! Caps lock is ON</span>}
           <label htmlFor="lastname">Lastname:</label>
@@ -47,8 +79,10 @@ function SignUp() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            onChange={handleInputChange}
+            value={input.lastname}
           />
-          
+
           <label htmlFor="username">Username:</label>
           <Input
             onKeyUp={checkCapsLockOn}
@@ -58,8 +92,9 @@ function SignUp() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            onChange={handleInputChange}
+            value={input.username}
           />
-          
 
           <label htmlFor="email">Email:</label>
           <Input
@@ -71,6 +106,8 @@ function SignUp() {
             autoComplete="off"
             required={true}
             type="email"
+            onChange={handleInputChange}
+            value={input.email}
           />
 
           <label htmlFor="password">Password:</label>
@@ -83,6 +120,8 @@ function SignUp() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            onChange={handleInputChange}
+            value={input.password}
           />
           <label htmlFor="confirmPassword">Confirm Password:</label>
           <Input
@@ -94,6 +133,8 @@ function SignUp() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            onChange={handleInputChange}
+            value={input.confirmPassword}
           />
           <Box className="pwdWrapper">
             <Box className="togglePwd">
@@ -106,17 +147,19 @@ function SignUp() {
               <span className="shwPwd">show password</span>
             </Box>
           </Box>
-          <button type="submit" className="loginBtn">
+          <button type="submit" className="loginBtn" onClick={handleSignUp}>
             sign up
           </button>
         </Box>
         <span className="dontHave">
           Already have an account?{" "}
-          <span onClick={routeToPage} className="haveAccount" >Log In</span>
+          <span onClick={routeToPage} className="haveAccount">
+            Log In
+          </span>
         </span>
       </form>
     </Box>
   );
 }
 
-export default SignUp
+export default SignUp;
