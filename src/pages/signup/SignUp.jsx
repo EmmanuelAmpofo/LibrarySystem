@@ -49,6 +49,7 @@ function SignUp() {
       console.log(input.password);
       alert("Registration Successful")
       navigate("/");
+      
     } else {
       alert("Please all form fields are required");
     }
