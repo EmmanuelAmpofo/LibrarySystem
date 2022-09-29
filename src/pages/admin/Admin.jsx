@@ -1,8 +1,11 @@
 import React from 'react'
+import MainCard from '../../component/mainCard/MainCard'
 
 function Admin() {
   return (
-    <div>Admin</div>
+    <div>
+      <MainCard/>
+    </div>
   )
 }
 
