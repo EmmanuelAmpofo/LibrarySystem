@@ -1,10 +1,12 @@
 import { Box, Input } from "@mui/material";
 import React, { useState } from "react";
-import "./login.css";
+import { useNavigate } from "react-router-dom";
+import "./loginSignUp.css";
 
 function Login() {
   const [capsLock, setCapsLock] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
+  const navigate = useNavigate()
 
   const checkCapsLockOn = (event) => {
     if (event.getModifierState("CapsLock")) {
@@ -17,6 +19,15 @@ function Login() {
   const showPassword = () => {
     setVisiblePassword(visiblePassword ? false : true);
   };
+
+  const routeToPage=()=>{
+    navigate('/signup')
+  }
+
+  const handleSignIn=(event)=>{
+    event.preventDefault()
+    navigate("/admin")
+  }
 
   return (
     <Box className="loginWrapper">
@@ -62,25 +73,23 @@ function Login() {
               <input
                 type="checkbox"
                 name="show password"
-                id=""
+                id="showpwd"
                 onClick={showPassword}
               />
-              <span className="shwPwd">show password</span>
+              <span htmlFor="showpwd" className="shwPwd">show password</span>
             </Box>
 
             <a href="/" className="forgotPassword">
               forgot password?
             </a>
           </Box>
-          <button type="submit" className="loginBtn">
+          <button type="submit" className="loginBtn" onClick={handleSignIn}>
             login
           </button>
         </Box>
         <span className="dontHave">
-          Don't have an account?{" "}
-          <a href="/" className="signUp">
-            Sign Up
-          </a>
+          Already have an account?{" "}
+          <span onClick={routeToPage} className="haveAccount" >Sign Up</span>
         </span>
       </form>
     </Box>
