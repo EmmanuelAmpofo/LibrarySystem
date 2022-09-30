@@ -35,13 +35,12 @@ function Login() {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    if(loginInput.username === "" && loginInput.email === "" && loginInput.password === ""){
-      
-      alert("some fields are empty")
-    }else{
+    if(loginInput.username !== "" && loginInput.email !== "" && loginInput.password !== ""){
       console.log(loginInput.username)
       console.log(loginInput.email)
       console.log(loginInput.password)
+    }else{
+      alert("some fields are empty")
     }
     navigate("/admin");
   };
