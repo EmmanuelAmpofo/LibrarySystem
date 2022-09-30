@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "./loginSignUp.css";
 
 function Login() {
+  const [loginInput, setLoginInput] = useState("");
   const [capsLock, setCapsLock] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const checkCapsLockOn = (event) => {
     if (event.getModifierState("CapsLock")) {
@@ -20,14 +21,29 @@ function Login() {
     setVisiblePassword(visiblePassword ? false : true);
   };
 
-  const routeToPage=()=>{
-    navigate('/signup')
-  }
+  const routeToPage = () => {
+    navigate("/signup");
+  };
 
-  const handleSignIn=(event)=>{
-    event.preventDefault()
-    navigate("/admin")
-  }
+  const handleLoginInputChange = (event) => {
+    const { id, value } = event.target;
+    setLoginInput((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    if(loginInput.username !== "" && loginInput.email !== "" && loginInput.password !== ""){
+      console.log(loginInput.username)
+      console.log(loginInput.email)
+      console.log(loginInput.password)
+    }else{
+      alert("some fields are empty")
+    }
+    navigate("/admin");
+  };
 
   return (
     <Box className="loginWrapper">
@@ -42,6 +58,8 @@ function Login() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            value={loginInput.username}
+            onChange={handleLoginInputChange}
           />
           {capsLock && <span className="caps">WARNING! Caps lock is ON</span>}
 
@@ -55,6 +73,8 @@ function Login() {
             autoComplete="off"
             required={true}
             type="email"
+            value={loginInput.email}
+            onChange={handleLoginInputChange}
           />
 
           <label htmlFor="password">Password:</label>
@@ -67,6 +87,8 @@ function Login() {
             disableUnderline={true}
             autoComplete="off"
             required={true}
+            value={loginInput.password}
+            onChange={handleLoginInputChange}
           />
           <Box className="pwdWrapper">
             <Box className="togglePwd">
@@ -76,7 +98,9 @@ function Login() {
                 id="showpwd"
                 onClick={showPassword}
               />
-              <span htmlFor="showpwd" className="shwPwd">show password</span>
+              <span htmlFor="showpwd" className="shwPwd">
+                show password
+              </span>
             </Box>
 
             <a href="/" className="forgotPassword">
@@ -89,7 +113,9 @@ function Login() {
         </Box>
         <span className="dontHave">
           Already have an account?{" "}
-          <span onClick={routeToPage} className="haveAccount" >Sign Up</span>
+          <span onClick={routeToPage} className="haveAccount">
+            Sign Up
+          </span>
         </span>
       </form>
     </Box>

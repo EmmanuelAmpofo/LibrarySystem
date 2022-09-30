@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [input, setInput] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const [capsLock, setCapsLock] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -32,7 +32,7 @@ function SignUp() {
       ...prev,
       [id]: value,
     }));
-    comparePassword(event)
+    comparePassword(event);
   };
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -49,36 +49,39 @@ function SignUp() {
       console.log(input.username);
       console.log(input.email);
       console.log(input.password);
-      alert("Registration Successful")
+      alert("Registration Successful");
       navigate("/");
-      
     } else {
       alert("Please all form fields are required");
     }
   };
 
-  const comparePassword = (event) =>{
-    const {id, value} = event.target;
-    setError(prev => {
-      const errorStateObj = { 
-        ...prev, [id]: ""
-      }
+  const comparePassword = (event) => {
+    const { id, value } = event.target;
+    setError((prev) => {
+      const errorStateObj = {
+        ...prev,
+        [id]: "",
+      };
       switch (id) {
         case "password":
-          if(!value){
+          if (!value) {
             errorStateObj[id] = "Please enter your password.";
-          } else if (input.confirmPassword && value !== input.confirmPassword){
-            errorStateObj["confirmPassword"] = "Password and Confirm Password does not match."
-          } else{
-            errorStateObj["confirmPassword"] = input.confirmPassword ? "" : error.confirmPassword;
+          } else if (input.confirmPassword && value !== input.confirmPassword) {
+            errorStateObj["confirmPassword"] =
+              "Password and Confirm Password does not match.";
+          } else {
+            errorStateObj["confirmPassword"] = input.confirmPassword
+              ? ""
+              : error.confirmPassword;
           }
           break;
 
         case "confirmPassword":
-          if(!value){
-            errorStateObj[id] =  "Please confirm password.";
-          }else if (input.password && value !== input.password){
-            errorStateObj[id] = "Password and confirm password doies not match.";
+          if (!value) {
+            errorStateObj[id] = "Please confirm password.";
+          } else if (input.password && value !== input.password) {
+            errorStateObj[id] = "Password and confirm password does not match.";
           }
           break;
 
@@ -87,8 +90,8 @@ function SignUp() {
       }
 
       return errorStateObj;
-    })
-  }
+    });
+  };
 
   return (
     <Box className="loginWrapper">
@@ -173,8 +176,12 @@ function SignUp() {
             autoComplete="off"
             required={true}
             onChange={handleInputChange}
+            onBlur={comparePassword}
             value={input.confirmPassword}
           />
+          {error.confirmPassword && (
+            <span className="caps">{error.confirmPassword}</span>
+          )}
           <Box className="pwdWrapper" onClick={showPassword}>
             <Box className="togglePwd">
               <input
@@ -183,7 +190,9 @@ function SignUp() {
                 id="vvv"
                 onClick={showPassword}
               />
-              <label htmlFor="vvv" className="shwPwd">show password</label>
+              <label htmlFor="vvv" className="shwPwd">
+                show password
+              </label>
             </Box>
           </Box>
           <button type="submit" className="loginBtn" onClick={handleSignUp}>
