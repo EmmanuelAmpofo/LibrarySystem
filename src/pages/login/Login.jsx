@@ -35,12 +35,17 @@ function Login() {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    if(loginInput.username !== "" && loginInput.email !== "" && loginInput.password !== ""){
-      console.log(loginInput.username)
-      console.log(loginInput.email)
-      console.log(loginInput.password)
-    }else{
-      alert("some fields are empty")
+    if (
+      loginInput.username !== "" &&
+      loginInput.email !== "" &&
+      loginInput.password !== ""
+    ) {
+      console.log(loginInput.username);
+      console.log(loginInput.email);
+      console.log(loginInput.password);
+    } else {
+      console.log("testing......")
+      alert("some fields are empty");
     }
     navigate("/admin");
   };
@@ -71,7 +76,7 @@ function Login() {
             className="inputField"
             disableUnderline={true}
             autoComplete="off"
-            required={true}
+            required
             type="email"
             value={loginInput.email}
             onChange={handleLoginInputChange}
@@ -86,7 +91,7 @@ function Login() {
             className="inputField"
             disableUnderline={true}
             autoComplete="off"
-            required={true}
+            required
             value={loginInput.password}
             onChange={handleLoginInputChange}
           />
